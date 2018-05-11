@@ -98,7 +98,7 @@ public class Recipe {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", admin=" + admin +
+                ", admin=" + admin.getUsername() +
                 '}';
     }
 }

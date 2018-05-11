@@ -23,10 +23,23 @@ public class RecipeService {
         recipeRepository.delete(recipe);
     }
 
-   /* public Recipe findRecipe(String nameRecipe)
+    public Recipe findRecipe(String nameRecipe)
     {
-        return recipeRepository.getByTitle(nameRecipe);
-    }*/
+        return recipeRepository.findByTitle(nameRecipe);
+    }
+
+   public List<Recipe> getVeganRecipes()
+   {
+       List<Recipe> recipes=this.getAllRecipes();
+       Criteria c=new CriteriaVegan();
+       return c.meetCriteria(recipes);
+   }
+    public List<Recipe> getNonVeganRecipes()
+    {
+        List<Recipe> recipes=this.getAllRecipes();
+        Criteria c=new CriteriaNonVegan();
+        return c.meetCriteria(recipes);
+    }
 
     public List<Recipe> getAllRecipes()
     {

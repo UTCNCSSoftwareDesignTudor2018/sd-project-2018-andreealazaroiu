@@ -1,7 +1,9 @@
 package com.cookingrecipes.project.business;
 
+import com.cookingrecipes.project.dataAccess.entities.Comment;
 import com.cookingrecipes.project.dataAccess.entities.Recipe;
 import com.cookingrecipes.project.dataAccess.entities.User;
+import com.cookingrecipes.project.dataAccess.repositories.RecipeRepository;
 import com.cookingrecipes.project.dataAccess.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,12 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RecipeService recipeService;
+
+    @Autowired
+    CommentService commentService;
 
    /* void bookmarkRecipe(Recipe recipe,User user)
     {
@@ -42,4 +50,10 @@ public class UserService {
        userRepository.save(new User(name,username,password,r));
    }
 
+   public void addComment(String recipeTitle,String comment)
+   {
+     Recipe myRecipe=recipeService.findRecipe(recipeTitle);
+     Comment comm=new Comment(comment,myRecipe);
+     commentService.addComment(comm);
+   }
 }

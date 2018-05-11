@@ -26,6 +26,11 @@ public class Comment {
     }
     public Comment(){}
 
+    public Comment(String comment, Recipe myRecipe) {
+        this.content=comment;
+        this.recipe=myRecipe;
+    }
+
     public int getId() {
         return id;
     }

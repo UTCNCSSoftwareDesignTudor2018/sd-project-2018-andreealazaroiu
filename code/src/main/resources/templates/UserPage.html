@@ -38,11 +38,11 @@
 </head>
 <body>
     <div class="topnav">
-        <a class="active" href="UserPage.html">Home</a>
-        <a href="#" th:href="@{LoginPage/UserPage/ViewRecipesForUserPage}">Recipes</a>
-        <a href="ViewBookmarkedRecipes.html">Bookmarked Recipes</a>
-        <a href="AddRecipePage.html">Add Recipe</a>
-        <a href="EditAccountPage">Account Settings</a>
+        <a class="active" th:href="@{LoginPage/UserPage}">Home</a>
+        <a th:href="@{LoginPage/UserPage/ViewRecipesForUserPage}">Recipes</a>
+        <a th:href="@{LoginPage/UserPage/ViewBookmarkedRecipes}">Bookmarked Recipes</a>
+        <a href="#" th:href="@{LoginPage/UserPage/AddRecipePage}">Add Recipe</a>
+        <a href="#" th:href="@{LoginPage/UserPage/EditAccountPage}">Account Settings</a>
     </div>
 
     <p align="center" style="margin-top: 100px; margin-left: 100px;margin-right: 100px">

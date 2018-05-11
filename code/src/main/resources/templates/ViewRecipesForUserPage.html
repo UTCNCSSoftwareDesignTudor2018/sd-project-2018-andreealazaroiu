@@ -6,20 +6,85 @@
     <style>
         body{
             background-color:blanchedalmond;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: lightcoral;
+            height: 100%;
+            color: white;
         }
     </style>
+
 
     </head>
 </head>
 <body>
+    <div class="topnav">
+        <a  th:href="@{/}">Log-Out</a>
+        <a class="active" th:href="@{ViewRecipesForUserPage}">Recipes</a>
+        <a th:href="@{ViewBookmarkedRecipes}">Bookmarked Recipes</a>
+        <a href="#" th:href="@{AddRecipePage}">Add Recipe</a>
+        <a href="#" th:href="@{EditAccountPage}">Account Settings</a>
+    </div>
+
     <h>
         <p>
-         In this section you will find a large variety of vegan cooking recipes as well as non vegan.
+            In this section you will find a large variety of vegan cooking recipes as well as non vegan.
         </p>
     </h>
+    <h>
+        <b>Vegan Recipes</b>
+        <ul th:each="recipe: ${recipesVegan}">
+            <li th:text="${recipe.title} + ': ' + ${recipe.content}"></li>
+            <p>Comments:</p>
+            <ul th:each="comment: ${recipe.comments}">
+                <li th:text="${comment.content}"></li>
+            </ul>
+        </ul>
+    </h>
 
-    <ul th:each="recipe: ${recipesVegan}">
-        <li th:text="${recipe.title} + ': ' + ${recipe.content}"></li>
-    </ul>
+    <h>
+        <b>Non-Vegan Recipes</b>
+        <ul th:each="recipe: ${recipesNonVegan}">
+            <li th:text="${recipe.title} + ': ' + ${recipe.content}"></li>
+            <p>Comments:</p>
+            <ul th:each="comment: ${recipe.comments}">
+                <li th:text="${comment.content}"></li>
+            </ul>
+        </ul>
+    </h>
+
+<h align="center">
+    Add comment:
+    Enter title of the Recipe you want to comment on
+    <form method="post" action="/LoginPage/UserPage/ViewRecipesForUserPage">
+        <ul style="list-style: none">
+    <li><input type="text" name="rt"></li>
+    <li><textarea name="comment" style="width:300px;height:100px;"></textarea></li>
+    <li><input type="submit" name="addcomment" value="Add Comment"></li>
+            </ul>
+    </form>
+</h>
+
 </body>
 </html>
