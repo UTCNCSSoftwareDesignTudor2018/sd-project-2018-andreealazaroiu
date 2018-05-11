@@ -6,6 +6,7 @@ import com.cookingrecipes.project.dataAccess.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,5 +23,23 @@ public class UserService {
         userRepository.save(user);
 
     }*/
+  public void unbookmark(Recipe recipe)
+   {
+
+   }
+
+  public  boolean verifyIfUser(String username,String password)
+   {
+       boolean verify=false;
+       if(userRepository.getByUsernameAndPassword(username,password)!=null)
+           verify=true;
+       return verify;
+   }
+
+   public void createAccount(String name,String username,String password)
+   {
+       List<Recipe> r=new ArrayList<>();
+       userRepository.save(new User(name,username,password,r));
+   }
 
 }

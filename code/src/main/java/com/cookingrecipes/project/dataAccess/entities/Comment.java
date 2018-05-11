@@ -15,7 +15,7 @@ public class Comment {
     @Column(name="content")
     private String content;
 
-    @ManyToOne(targetEntity = Recipe.class)
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Recipe.class)
     @JoinColumn(name="recipe_id")
     private Recipe recipe;
 
@@ -24,6 +24,7 @@ public class Comment {
         this.content = content;
         this.recipe = recipe;
     }
+    public Comment(){}
 
     public int getId() {
         return id;

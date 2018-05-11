@@ -1,5 +1,7 @@
 package com.cookingrecipes.project.dataAccess.entities;
 
+import org.springframework.data.repository.cdi.Eager;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -19,10 +21,10 @@ public class User {
     @Column(name="username")
     private String username;
 
-    @Column(name="password")
-    private String password;
+    @Column(name="passw")
+    private String passw;
 
-    @ManyToMany(cascade={CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER,cascade={CascadeType.ALL})
     @JoinTable(
             name="users_recipes",
             joinColumns = {@JoinColumn(name="idusers")},
@@ -33,9 +35,11 @@ public class User {
     public User(String name, String username, String password, List<Recipe> recipes) {
         this.name = name;
         this.username = username;
-        this.password = password;
+        this.passw = password;
         this.recipes = recipes;
     }
+
+    public User(){}
 
     public int getId() {
         return id;
@@ -62,11 +66,11 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return passw;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.passw = password;
     }
 
     public List<Recipe> getRecipes() {
@@ -85,14 +89,14 @@ public class User {
         return id == user.id &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password) &&
+                Objects.equals(passw, user.passw) &&
                 Objects.equals(recipes, user.recipes);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, username, password, recipes);
+        return Objects.hash(id, name, username, passw, recipes);
     }
 
     @Override
@@ -101,7 +105,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + passw + '\'' +
                 ", recipes=" + recipes +
                 '}';
     }

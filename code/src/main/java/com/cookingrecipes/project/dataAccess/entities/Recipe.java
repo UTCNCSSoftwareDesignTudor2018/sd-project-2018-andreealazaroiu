@@ -33,6 +33,7 @@ public class Recipe {
         this.admin = admin;
         this.comments=comments;
     }
+    public Recipe() {}
 
     public int getId() {
         return id;

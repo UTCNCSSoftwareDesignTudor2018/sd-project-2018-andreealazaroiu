@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
         body{
-            background-image:url( "cookinhBackground.jpeg");
-            background-size:cover;
-            background-repeat: no-repeat;
+            background-color:blanchedalmond;
         }
     </style>
+
+    </head>
 </head>
 <body>
+    <h>
+        <p>
+         In this section you will find a large variety of vegan cooking recipes as well as non vegan.
+        </p>
+    </h>
 
+    <ul th:each="recipe: ${recipesVegan}">
+        <li th:text="${recipe.title} + ': ' + ${recipe.content}"></li>
+    </ul>
 </body>
 </html>

@@ -16,7 +16,7 @@ public class Admin {
     private String username;
 
     @Column(name="password")
-    private String password;
+    private String passw;
 
     @OneToMany(mappedBy="admin",fetch= FetchType.EAGER)
     private List<Recipe> recipes;
@@ -24,9 +24,10 @@ public class Admin {
     public Admin(int id, String username, String password, List<Recipe> recipes) {
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.passw = password;
         this.recipes = recipes;
     }
+    public Admin(){}
 
     public int getId() {
         return id;
@@ -45,11 +46,11 @@ public class Admin {
     }
 
     public String getPassword() {
-        return password;
+        return passw;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.passw = password;
     }
 
     public List<Recipe> getRecipes() {
@@ -67,14 +68,14 @@ public class Admin {
         Admin admin = (Admin) o;
         return id == admin.id &&
                 Objects.equals(username, admin.username) &&
-                Objects.equals(password, admin.password) &&
+                Objects.equals(passw, admin.passw) &&
                 Objects.equals(recipes, admin.recipes);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, username, password, recipes);
+        return Objects.hash(id, username, passw, recipes);
     }
 
     @Override
@@ -82,7 +83,7 @@ public class Admin {
         return "Admin{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + passw + '\'' +
                 ", recipes=" + recipes +
                 '}';
     }

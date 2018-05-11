@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
+    <style >
         body{
-            background-image:url( "cookinhBackground.jpeg");
-            background-size:cover;
-            background-repeat: no-repeat;
+            background-color:blanchedalmond;
         }
     </style>
 </head>
 <body>
-    <p style="margin-left:100px;margin-top:100px">
-    <form  method="post" action="UserPage">
+
+    <form  method="get" action="UserPage">
         <ul style="list-style: none;" >
             <label for="username">Username:</label>
-            <li><input type="text" id="username" name="loginusername"></li>
+            <li><input type="text" id="username" name="lu"></li>
             <label for="password">Password:</label>
-            <li> <input type="password" id="password" name="loginpassword"></li>
+            <li> <input type="password" id="password" name="lp"></li>
             <input type="submit" name="buttonlogin" value="Login">
         </ul>
     </form>
-    <a href="CreateAccountPage.html"> Create an account</a>
-    </p>
 
+    <form method="get" action="CreateAccountPage">
+        <input type="submit"  name="Create account" value="Create Account">
+    </form>
 </body>
 </html>

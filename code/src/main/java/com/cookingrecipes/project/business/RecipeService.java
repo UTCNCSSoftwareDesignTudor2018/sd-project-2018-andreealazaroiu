@@ -23,10 +23,10 @@ public class RecipeService {
         recipeRepository.delete(recipe);
     }
 
-    public Recipe findRecipe(String nameRecipe)
+   /* public Recipe findRecipe(String nameRecipe)
     {
         return recipeRepository.getByTitle(nameRecipe);
-    }
+    }*/
 
     public List<Recipe> getAllRecipes()
     {

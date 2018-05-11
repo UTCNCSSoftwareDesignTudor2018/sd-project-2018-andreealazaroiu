@@ -10,6 +10,9 @@ public class AdminService {
     @Autowired
     RecipeService recipeService;
 
+    @Autowired
+    AdminService adminService;
+
     public void blockUser()
     {
 
@@ -18,5 +21,13 @@ public class AdminService {
     public void deleteRecipe(Recipe recipe)
     {
         recipeService.deleteRecipe(recipe);
+    }
+
+    public boolean verifyIfAdmin(String username,String password)
+    {
+        boolean verify=false;
+        if(adminService.verifyIfAdmin(username,password)==true)
+            verify=true;
+        return verify;
     }
 }

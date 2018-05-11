@@ -14,8 +14,8 @@ public interface RecipeRepository extends JpaRepository<Recipe,Integer> {
 
     Recipe getByTitle(String nameRecipe);
 
-    @Query("SELECT s.comments from Recipe s where r.title=:sn")
-    public List<Comment> getComments(@Param("sn")String title);
+    /*@Query("SELECT s.comments from recipes s where r.title=:sn")
+    public List<Comment> getComments(@Param("sn")String title);*/
 
 
 }
