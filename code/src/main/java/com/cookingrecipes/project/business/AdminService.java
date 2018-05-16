@@ -27,13 +27,13 @@ public class AdminService {
         recipeService.deleteRecipe(recipe);
     }
 
-    /*public boolean verifyIfAdmin(String username,String password)
+    public boolean verifyIfAdmin(String username,String password)
     {
         boolean verify=false;
-        if(adminRepository.verifyIfAdmin(username,password)==true)
+        if(adminRepository.getAdminByUsernameAndPassword(username,password)!=null)
             verify=true;
         return verify;
-    }*/
+    }
     public Optional<Admin> getAdmin()
     {
         return adminRepository.findById(1);

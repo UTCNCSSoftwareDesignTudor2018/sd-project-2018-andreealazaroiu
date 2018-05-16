@@ -72,4 +72,9 @@ public class UserService {
        u.setEmail(email);
        userRepository.save(u);
    }
+
+   public List<User> getAllUsers()
+   {
+       return userRepository.findAll();
+   }
 }

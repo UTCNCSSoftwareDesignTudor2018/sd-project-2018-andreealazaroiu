@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="admin")
-public class Admin {
+public class Admin implements GeneralUser{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

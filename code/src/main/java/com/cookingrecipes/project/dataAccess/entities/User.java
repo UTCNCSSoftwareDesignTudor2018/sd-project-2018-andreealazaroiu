@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="users")
-public class User {
+public class User implements GeneralUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

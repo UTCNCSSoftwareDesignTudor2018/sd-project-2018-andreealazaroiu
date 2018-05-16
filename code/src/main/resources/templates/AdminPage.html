@@ -1,51 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
         body {
             background-color:blanchedalmond;
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .topnav {
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        .topnav a {
-            float: left;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .topnav a.active {
-            background-color: lightcoral;
-            color: white;
         }
     </style>
-
 </head>
 <body>
-<div class="topnav">
-    <a class="active" href="AdminPage.html">Home</a>
-    <a href="ViewRecipesForAdminPage.html">Recipes</a>
-    <a href="ViewUsersPage.html">Users</a>
-</div>
-
     <p align="center">
         Welcome Admin!
     </p>
 
+    <p align="center">All Recipes:</p>
+    <ul th:each="recipe: ${recipes}">
+        <li th:text="${recipe.title} + ': ' + ${recipe.content}"></li>
+    </ul>
+    <p align="center">All Users:</p>
+    <ul th:each="user: ${users}">
+        <li th:text="${user.name} + ': ' + ${user.username}+ ', '+ ${user.passw}+', '+${user.email}"></li>
+    </ul>
 </body>
 </html>
