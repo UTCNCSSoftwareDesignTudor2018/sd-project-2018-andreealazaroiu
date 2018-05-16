@@ -27,15 +27,6 @@ public class LoginController {
         return "LoginPage";
     }
 
-    @GetMapping("UserPage")
-    public String userLogin(@RequestParam("lu") String username,@RequestParam("lp") String password)
-    {
-        if( userService.verifyIfUser(username,password)==true)
-             return "UserPage";
-        else
-           return "LoginPage";
-    }
-
     @GetMapping("CreateAccountPage")
     public String createAccount()
     { return "CreateAccountPage"; }
@@ -43,10 +34,12 @@ public class LoginController {
     @PostMapping("CreateAccountPage")
     public String insertAccount(@RequestParam("putfullname")String name,
                                 @RequestParam("putusername")String usname,
-                                @RequestParam("putpassword")String passw)
+                                @RequestParam("putpassword")String passw,
+                                @RequestParam("putemail") String email)
     {
-        userService.createAccount(name,usname,passw);
-        return "CreateAccountPage";
+
+        userService.createAccount(name,usname,passw,email);
+        return "LoginPage";
     }
 
 }

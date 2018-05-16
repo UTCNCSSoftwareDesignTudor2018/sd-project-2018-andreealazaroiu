@@ -1,12 +1,14 @@
 package com.cookingrecipes.project.presentation;
 
 import com.cookingrecipes.project.business.*;
+import com.cookingrecipes.project.dataAccess.entities.Comment;
 import com.cookingrecipes.project.dataAccess.entities.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -19,6 +21,9 @@ public class RecipeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AdminService adminService;
 
     @RequestMapping(value="LoginPage/UserPage/ViewRecipesForUserPage",method= RequestMethod.GET)
     public ModelAndView putRecipes()
@@ -51,11 +56,7 @@ public class RecipeController {
         return "AddRecipePage";
     }
 
-    @RequestMapping(value="LoginPage/UserPage/EditAccountPage",method= RequestMethod.GET)
-    public String editAccount()
-    {
-        return "EditAccountPage";
-    }
+
 
     @RequestMapping(value="LoginPage/UserPage",method= RequestMethod.GET)
     public String theUserPage()
@@ -64,10 +65,11 @@ public class RecipeController {
     }
 
     @PostMapping("LoginPage/UserPage/AddRecipePage")
-    public String addRecipe(@RequestParam("rt")String titleRecipe,@RequestParam("comment")String comment)
+    public ModelAndView addRecipe(@RequestParam("recipetitle")String titleRecipe,@RequestParam("content")String content)
     {
-
-        return "AddRecipePage";
+        List<Comment> c=new ArrayList<Comment>();
+        recipeService.addRecipe(new Recipe(titleRecipe,content,adminService.getAdmin().get(),c));
+        return mv;
     }
 
 }

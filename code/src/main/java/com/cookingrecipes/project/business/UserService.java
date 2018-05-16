@@ -44,10 +44,17 @@ public class UserService {
        return verify;
    }
 
-   public void createAccount(String name,String username,String password)
+   public User getUser(String username,String password)
+   {
+       return userRepository.getByUsernameAndPassword(username,password);
+   }
+
+   public void createAccount(String name,String username,String password,String email)
    {
        List<Recipe> r=new ArrayList<>();
-       userRepository.save(new User(name,username,password,r));
+       User user=new User.UserBuilder().setName(name).setUsername(username).setPassw(password).setRecipes(r).setEmail(email).build();
+
+       userRepository.save(user);
    }
 
    public void addComment(String recipeTitle,String comment)
@@ -55,5 +62,14 @@ public class UserService {
      Recipe myRecipe=recipeService.findRecipe(recipeTitle);
      Comment comm=new Comment(comment,myRecipe);
      commentService.addComment(comm);
+   }
+
+   public void updateAccount(User u,String name,String username,String password,String email)
+   {
+       u.setName(name);
+       u.setUsername(username);
+       u.setPassw(password);
+       u.setEmail(email);
+       userRepository.save(u);
    }
 }

@@ -29,12 +29,7 @@ public class ProjectApplicationTests {
 	public void contextLoads() {
 	}
 
-	@Disabled
-	@Test
-	public void testInsert()
-	{
-		userRepository.save(new User("Cocias Raul","cocRaul","coco2000",null));
-	}
+
 
 	@Disabled
 	@Test
@@ -49,7 +44,6 @@ public class ProjectApplicationTests {
 	public void testComments()
 	{
 		Optional<Recipe> r= Optional.ofNullable(recipeRepository.findByTitle("Vegan Three-Bean Chili With Spring Pesto"));
-		//Optional<Recipe> r=recipeRepository.findById(1);
 		Recipe rr=new Recipe();
 		if(r.isPresent())
 			rr=r.get();

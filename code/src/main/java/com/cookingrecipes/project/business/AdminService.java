@@ -1,8 +1,12 @@
 package com.cookingrecipes.project.business;
 
+import com.cookingrecipes.project.dataAccess.entities.Admin;
 import com.cookingrecipes.project.dataAccess.entities.Recipe;
+import com.cookingrecipes.project.dataAccess.repositories.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AdminService {
@@ -11,7 +15,7 @@ public class AdminService {
     RecipeService recipeService;
 
     @Autowired
-    AdminService adminService;
+    AdminRepository adminRepository;
 
     public void blockUser()
     {
@@ -23,11 +27,15 @@ public class AdminService {
         recipeService.deleteRecipe(recipe);
     }
 
-    public boolean verifyIfAdmin(String username,String password)
+    /*public boolean verifyIfAdmin(String username,String password)
     {
         boolean verify=false;
-        if(adminService.verifyIfAdmin(username,password)==true)
+        if(adminRepository.verifyIfAdmin(username,password)==true)
             verify=true;
         return verify;
+    }*/
+    public Optional<Admin> getAdmin()
+    {
+        return adminRepository.findById(1);
     }
 }

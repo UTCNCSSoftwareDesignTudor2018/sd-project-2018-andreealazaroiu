@@ -42,7 +42,23 @@
     <a th:href="@{ViewBookmarkedRecipes}">Bookmarked Recipes</a>
     <a href="#" th:href="@{AddRecipePage}">Add Recipe</a>
     <a class="active" href="#" th:href="@{EditAccountPage}">Account Settings</a>
+
 </div>
+
+        <form align="center" method="post" action="LoginPage/UserPage/EditAccountPage">
+            <ul style="list-style: none">
+                <li><label for="pn">Name:</label></li>
+                <li><input type="text" id="pn" th:field="${tu.name}" name="putname"> </li>
+                <li><label for="pu">Username:</label></li>
+                <li><input type="text" id="pu" th:field="${tu.username}" name="putusername"></li>
+                <li><label for="pp">Password:</label></li>
+                <li><input type="text" id="pp" th:field="${tu.passw}" name="putpassw"></li>
+                <li><label for="pe">Email:</label></li>
+                <li><input type="text"id="pe" th:field="${tu.email}" name="putemail">
+                <li><input type="submit" name="okButton" value="Submit Changes"></li>
+            </ul>
+        </form>
+
 
 </body>
 </html>

@@ -26,8 +26,8 @@ public class Recipe {
     @OneToMany(mappedBy="recipe",fetch=FetchType.EAGER)
     private List<Comment> comments;
 
-    public Recipe(int id, String title, String content, Admin admin,List<Comment>comments) {
-        this.id = id;
+    public Recipe( String title, String content, Admin admin,List<Comment>comments) {
+       // this.id = id;
         this.title = title;
         this.content = content;
         this.admin = admin;

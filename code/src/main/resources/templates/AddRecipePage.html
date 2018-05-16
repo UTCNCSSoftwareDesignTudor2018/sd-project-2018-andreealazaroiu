@@ -43,8 +43,15 @@
         <a class="active" href="#" th:href="@{AddRecipePage}">Add Recipe</a>
         <a href="#" th:href="@{EditAccountPage}">Account Settings</a>
     </div>
-    <p>
-        <form method="post" action="post">
+    <p align="center" style="margin-top: 20px">
+        <form method="post" action="/LoginPage/UserPage/AddRecipePage">
+        <ul style="list-style: none">
+            <li><label for="rt">Enter the name of the recipe: (Please specify in the title if the recipe is vegan. Thank you)</label></li>
+            <li><input type="text" id="rt" name="recipetitle"></li>
+            <li><label for="ct">Enter Recipe:</label></li>
+            <li><textarea name="content" rows="15" cols="90" id="ct"></textarea></li>
+            <li><input type="submit" name="insertrecipe" value="Add Recipe"></li>
+        </ul>
 
     </form>
     </p>
