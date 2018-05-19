@@ -22,5 +22,17 @@
     <ul th:each="user: ${users}">
         <li th:text="${user.name} + ': ' + ${user.username}+ ', '+ ${user.passw}+', '+${user.email}"></li>
     </ul>
+
+    <form action="AdminPage" method="post">
+        <input type="text" name="nameuser">
+        <input type="submit" value="Delete User" name="DelUser"/>
+    </form>
+    <form action="AdminPage" method="post">
+        <input type="text" name="namerecipe">
+        <input type="submit" value="Delete Recipe" name="DelRecipe"/>
+    </form>
+
+
+
 </body>
 </html>

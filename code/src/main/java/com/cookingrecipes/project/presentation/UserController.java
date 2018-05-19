@@ -5,8 +5,11 @@ import com.cookingrecipes.project.business.RecipeService;
 import com.cookingrecipes.project.business.UserService;
 import com.cookingrecipes.project.dataAccess.entities.Recipe;
 import com.cookingrecipes.project.dataAccess.entities.User;
+import com.cookingrecipes.project.dataAccess.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,6 +31,9 @@ public class UserController {
     @Autowired
     AdminService adminService;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping(value={"UserPage","AdminPage"})
     public ModelAndView userLogin(@RequestParam("lu") String username, @RequestParam("lp") String password)
     {
@@ -39,6 +45,8 @@ public class UserController {
         ma.addObject("recipes",recipes);
         List<User>users=userService.getAllUsers();
         ma.addObject("users",users);
+        //ma.addObject("user", new User());
+        ma.addObject("recipe",new Recipe());
         ModelAndView ml=new ModelAndView("LoginPage");
 
 
@@ -68,4 +76,29 @@ public class UserController {
         userService.updateAccount((User)mv.getModel().get("tu"),name,username,passw,email);
         return m;
     }
+
+    @ModelAttribute("user")
+    public User getUserM()
+    {
+        return new User();
+    }
+
+    @PostMapping(value = "AdminPage",params = "DelUser")
+    public ModelAndView deleteUser(@RequestParam("nameuser")String nameuser )
+    {
+        User u=userService.getUserByName(nameuser);
+        userService.deleteUser(u);
+        ma.getModel().replace("users", userService.getAllUsers());
+        return ma;
+    }
+    @PostMapping(value = "AdminPage",params = "DelRecipe")
+    public ModelAndView deleteRecipe(@RequestParam("namerecipe")String namerecipe )
+    {
+        Recipe r=recipeService.findRecipe(namerecipe);
+        adminService.deleteRecipe(r);
+        ma.getModel().replace("users", userService.getAllUsers());
+        return ma;
+    }
+
+
 }

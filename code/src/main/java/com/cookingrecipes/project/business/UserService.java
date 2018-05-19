@@ -48,6 +48,10 @@ public class UserService {
    {
        return userRepository.getByUsernameAndPassword(username,password);
    }
+   public User getUserByName(String name)
+   {
+       return userRepository.getByName(name);
+   }
 
    public void createAccount(String name,String username,String password,String email)
    {
@@ -77,4 +81,9 @@ public class UserService {
    {
        return userRepository.findAll();
    }
+
+   public void deleteUser(User u)
+    {
+     userRepository.delete(u);
+    }
 }

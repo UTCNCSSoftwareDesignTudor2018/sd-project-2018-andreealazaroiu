@@ -2,6 +2,7 @@ package com.cookingrecipes.project.business;
 
 import com.cookingrecipes.project.dataAccess.entities.Admin;
 import com.cookingrecipes.project.dataAccess.entities.Recipe;
+import com.cookingrecipes.project.dataAccess.entities.User;
 import com.cookingrecipes.project.dataAccess.repositories.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,12 @@ public class AdminService {
     @Autowired
     AdminRepository adminRepository;
 
-    public void blockUser()
-    {
+    @Autowired
+    UserService userService;
 
+    public void deleteUser(User user)
+    {
+            userService.deleteUser(user);
     }
 
     public void deleteRecipe(Recipe recipe)

@@ -57,4 +57,10 @@ public class ProjectApplicationTests {
 
 	}
 
+	@Test
+	public void testFind()
+	{
+		System.out.println(userRepository.getByName("Andreea Lazaroiu").toString());
+	}
+
 }
