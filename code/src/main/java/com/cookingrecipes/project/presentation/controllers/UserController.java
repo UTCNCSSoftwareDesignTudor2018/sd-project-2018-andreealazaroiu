@@ -1,4 +1,4 @@
-package com.cookingrecipes.project.presentation;
+package com.cookingrecipes.project.presentation.controllers;
 
 import com.cookingrecipes.project.business.AdminService;
 import com.cookingrecipes.project.business.RecipeService;
@@ -45,8 +45,6 @@ public class UserController {
         ma.addObject("recipes",recipes);
         List<User>users=userService.getAllUsers();
         ma.addObject("users",users);
-        //ma.addObject("user", new User());
-        ma.addObject("recipe",new Recipe());
         ModelAndView ml=new ModelAndView("LoginPage");
 
 
@@ -77,12 +75,6 @@ public class UserController {
         return m;
     }
 
-    @ModelAttribute("user")
-    public User getUserM()
-    {
-        return new User();
-    }
-
     @PostMapping(value = "AdminPage",params = "DelUser")
     public ModelAndView deleteUser(@RequestParam("nameuser")String nameuser )
     {
@@ -96,7 +88,7 @@ public class UserController {
     {
         Recipe r=recipeService.findRecipe(namerecipe);
         adminService.deleteRecipe(r);
-        ma.getModel().replace("users", userService.getAllUsers());
+        ma.getModel().replace("recipes",recipeService.getAllRecipes());
         return ma;
     }
 

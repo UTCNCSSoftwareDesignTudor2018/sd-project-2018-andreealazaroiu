@@ -1,4 +1,4 @@
-package com.cookingrecipes.project.presentation;
+package com.cookingrecipes.project.presentation.controllers;
 
 import com.cookingrecipes.project.business.*;
 import com.cookingrecipes.project.dataAccess.entities.Comment;
