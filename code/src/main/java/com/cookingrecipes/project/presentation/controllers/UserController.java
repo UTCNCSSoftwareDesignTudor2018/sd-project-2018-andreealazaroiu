@@ -21,6 +21,9 @@ public class UserController {
     private ModelAndView mv;
     private ModelAndView m;
     private ModelAndView ma;
+    private ModelAndView mb;
+    private ModelAndView ml;
+    private User user;
 
     @Autowired
     UserService userService;
@@ -45,8 +48,8 @@ public class UserController {
         ma.addObject("recipes",recipes);
         List<User>users=userService.getAllUsers();
         ma.addObject("users",users);
-        ModelAndView ml=new ModelAndView("LoginPage");
-
+        ml=new ModelAndView("LoginPage");
+        user=(User) mv.getModel().get("tu");
 
         if(userService.verifyIfUser(username, password))
             return mv;
@@ -55,18 +58,44 @@ public class UserController {
         else
             return ml;
     }
+    @RequestMapping(value="LoginPage/UserPage/ViewBookmarkedRecipes",method= RequestMethod.GET)
+    public ModelAndView putBookMarkedRecipes()
+    {
+        mb=new ModelAndView("ViewBookmarkedRecipes");
+        List<Recipe> bm=user.getRecipes();
+        mb.addObject("recipesbook",bm);
+        return mb;
+    }
+
+    @PostMapping(value = "LoginPage/UserPage/ViewBookmarkedRecipes",params = "unbookmark")
+    public ModelAndView remBR(@RequestParam("rtitle")String rt)
+    {
+        Recipe recipet=recipeService.findRecipe(rt);
+        userService.unbookmark(recipet,user);
+        mb.getModel().replace("recipesbook",user.getRecipes());
+        return mb;
+    }
+
+    @PostMapping(value="LoginPage/UserPage/ViewRecipesForUserPage",params="bookmark")
+    public ModelAndView addBR(@RequestParam("recipetitle")String rt)
+    {
+        Recipe recipe=recipeService.findRecipe(rt);
+        userService.bookmark(recipe,user);
+        mb.getModel().replace("recipesbook",user.getRecipes());
+        return mb;
+    }
 
     @RequestMapping(value="LoginPage/UserPage/EditAccountPage",method= RequestMethod.GET)
     public ModelAndView editAccount()
     {
         m=new ModelAndView("EditAccountPage");
-        m.addObject("tu",mv.getModel().get("tu"));
-
+        m.addObject("tu",user);
+        m.addObject("user",new User());
         return m;
     }
 
     @PostMapping("LoginPage/UserPage/EditAccountPage")
-    public ModelAndView editAccountOk(@RequestParam("putname")String name,
+    public ModelAndView editAccountOk(@ModelAttribute("user")User user,@RequestParam("putname")String name,
                                 @RequestParam("putusername")String username,
                                 @RequestParam("putpassw")String passw,
                                 @RequestParam("putemail")String email)

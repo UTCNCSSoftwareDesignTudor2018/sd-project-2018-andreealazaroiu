@@ -24,16 +24,22 @@ public class UserService {
     @Autowired
     CommentService commentService;
 
-   /* void bookmarkRecipe(Recipe recipe,User user)
+     public void bookmark(Recipe recipe,User user)
     {
         List<Recipe> recipesBookmarked=user.getRecipes();
-        recipesBookmarked.add(recipe);
+        if(!recipesBookmarked.contains(recipe))
+            recipesBookmarked.add(recipe);
+        user.setRecipes(recipesBookmarked);
         userRepository.save(user);
 
-    }*/
-  public void unbookmark(Recipe recipe)
+    }
+  public void unbookmark(Recipe recipe,User user)
    {
-
+       List<Recipe> recipesBookmarked=user.getRecipes();
+       if(recipesBookmarked.contains(recipe))
+            recipesBookmarked.remove(recipe);
+       user.setRecipes(recipesBookmarked);
+       userRepository.save(user);
    }
 
   public  boolean verifyIfUser(String username,String password)

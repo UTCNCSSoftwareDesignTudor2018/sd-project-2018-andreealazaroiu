@@ -46,20 +46,20 @@
 </div>
 
 
-            <ul align="center" style="list-style: none" >
-                <li><label for="pn">Name:</label></li>
-                <li><input type="text" id="pn" th:field="${tu.name}" name="putname"> </li>
-                <li><label for="pu">Username:</label></li>
-                <li><input type="text" id="pu" th:field="${tu.username}" name="putusername"></li>
-                <li><label for="pp">Password:</label></li>
-                <li><input type="text" id="pp" th:field="${tu.passw}" name="putpassw"></li>
-                <li><label for="pe">Email:</label></li>
-                <li><input type="text"id="pe" th:field="${tu.email}" name="putemail"></li>
-            </ul>
+           <form action="#" method="post" th:action="@{/LoginPage/UserPage/EditAccountPage}" >
+               <ul align="center" style="list-style: none" >
+                   <li><label for="pn">Name:</label></li>
+                   <li><input type="text" id="pn" th:placeholder="${tu.name}" name="putname"> </li>
+                   <li><label for="pu">Username:</label></li>
+                   <li><input type="text" id="pu" th:placeholder="${tu.username}" name="putusername"></li>
+                   <li><label for="pp">Password:</label></li>
+                   <li><input type="text" id="pp" th:placeholder="${tu.passw}" name="putpassw"></li>
+                   <li><label for="pe">Email:</label></li>
+                   <li><input type="text"id="pe" th:placeholder="${tu.email}" name="putemail"></li>
+                   <li> <input type="submit" name="okButton" value="Submit Changes"></li>
+               </ul>
 
-        <form align="center" method="post" action="LoginPage/UserPage/EditAccountPage">
-            <input type="submit" name="okButton" value="Submit Changes">
-        </form>
+            </form>
 
 
 </body>

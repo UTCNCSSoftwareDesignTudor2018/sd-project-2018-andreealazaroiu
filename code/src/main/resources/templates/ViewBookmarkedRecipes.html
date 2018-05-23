@@ -45,6 +45,14 @@
     </div>
 
 
+        <ul th:each="recipe: ${recipesbook}">
+            <li th:text="${recipe.title} + ': ' + ${recipe.content}"></li>
+        </ul>
+
+        <form action="/LoginPage/UserPage/ViewBookmarkedRecipes" method="post">
+            <input type="text" name="rtitle">
+            <input type="submit" name="unbookmark" value="unbookmark">
+        </form>
 
 </body>
 </html>
