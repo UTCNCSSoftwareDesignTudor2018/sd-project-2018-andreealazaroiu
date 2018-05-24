@@ -25,18 +25,12 @@ public class ProjectApplicationTests {
 
 	@Autowired
 	RecipeRepository recipeRepository;
-	@Test
-	public void contextLoads() {
-	}
-
-
 
 	@Disabled
 	@Test
 	public void testGetByUsernameAndPassword()
 	{
 		System.out.println(userRepository.getByUsernameAndPassword("cocRaul","coco2000").toString());
-		//System.out.println(userRepository.findById(1).toString());
 	}
 
 	@Disabled
@@ -62,5 +56,14 @@ public class ProjectApplicationTests {
 	{
 		System.out.println(userRepository.getByName("Andreea Lazaroiu").toString());
 	}
+
+	@Test
+	public void testViewRecipes()
+	{
+		List<Recipe> recipes=recipeRepository.findAll();
+		assert(recipes!=null);
+	}
+
+
 
 }
